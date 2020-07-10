@@ -6,5 +6,6 @@ docker run \
     -v $HOME/neo4j/import:/var/lib/neo4j/import \
     -v $HOME/neo4j/plugins:/plugins \
     -v $HOME/neo4j/conf:/conf \
-   reactomeImage
+    --restart unless-stopped \
+   reactomen4j
 
