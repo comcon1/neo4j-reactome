@@ -1,13 +1,15 @@
 #!/bin/sh
+
+exec_cyph="cypher-shell -a bolt://localhost:7687 -u neo4j -p $1 "
+
 echo Physical entity count:
-echo 'match (e:PhysicalEntity) RETURN count(e);' | \
-	cypher-shell -a bolt://localhost:7687 -u neo4j -p neo4j-emotcaer
+$exec_cyph "match (e:PhysicalEntity) RETURN count(e);"
+
 echo Interaction entity count:
-echo 'match (e:Interaction) RETURN count(e);' | \
-	cypher-shell -a bolt://localhost:7687 -u neo4j -p neo4j-emotcaer
+$exec_cyph "match (e:Interaction) RETURN count(e);"
+
 echo Reference entity count:
-echo 'match (e:ReferenceEntity) RETURN count(e);' | \
-	cypher-shell -a bolt://localhost:7687 -u neo4j -p neo4j-emotcaer
+$exec_cyph "match (e:ReferenceEntity) RETURN count(e);"
+
 echo Print last 10 editions:
-echo 'match (i:InstanceEdit) return i.dbId, i.dateTime, i.displayName order by i.dbId desc limit 10;' | \
-	cypher-shell -a bolt://localhost:7687 -u neo4j -p neo4j-emotcaer
+$exec_cyph "match (i:InstanceEdit) return i.dbId, i.dateTime, i.displayName order by i.dbId desc limit 10;"
